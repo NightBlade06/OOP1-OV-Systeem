@@ -1,5 +1,6 @@
 package ovPasSysteem;
 
+
 public class ovPasSysteemPoortOfPaal
 {
     // Fields
@@ -23,6 +24,7 @@ public class ovPasSysteemPoortOfPaal
     public void locatieOverschrijven(ovPasSysteemPas ovPas)
     {
 	ovPas.huidigeLocatie = locatie;
+	
 	// ovPas.rekeningWaarde = ovPas.rekeningWaarde + 1;
     }
 
