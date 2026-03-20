@@ -1,14 +1,13 @@
 package ovPasSysteem;
 
-
 public class ovPasSysteemPoortOfPaal
 {
     // Fields
 
-    String locatie;
-    boolean processKlaar;
-    boolean poort;
-    int huidigJaar;
+   private String locatie;
+   private boolean processKlaar = false;
+   private boolean poort;
+   private int huidigJaar;
 
     // Constructor
 
@@ -23,21 +22,25 @@ public class ovPasSysteemPoortOfPaal
 
     public void locatieOverschrijven(ovPasSysteemPas ovPas)
     {
-	ovPas.huidigeLocatie = locatie;
-	
+	ovPas.setHuidigelocatie(this.locatie);
+
 	// ovPas.rekeningWaarde = ovPas.rekeningWaarde + 1;
     }
 
     public void inchecken(ovPasSysteemPas ovPas)
     {
-	if (processKlaar = true && poort)
+	if (processKlaar == true && poort)
 	{
+	    ovPas.setStatusIncheck(true);
+	    System.out.printf("U bent ingecheckt op " + locatie);
 	    openPoort();
 	}
 
-	else if (processKlaar = true)
+	else if (processKlaar == true)
 	{
 	    locatieOverschrijven(ovPas);
+	    ovPas.setStatusIncheck(true);
+	    
 	    System.out.printf("U bent ingecheckt op " + locatie);
 	} else
 	{
@@ -47,7 +50,7 @@ public class ovPasSysteemPoortOfPaal
 
     public void validiteitCheck(ovPasSysteemPas ovPas)
     {
-	if (huidigJaar >= ovPas.geldigTotDatum)
+	if (huidigJaar > ovPas.getGeldigTotDatum())
 	{
 	    System.out.print("Uw ov-pas is verlopen haal z.s.m een nieuwe om weer te kunnen reizen.");
 	    quitProgram();
@@ -57,22 +60,21 @@ public class ovPasSysteemPoortOfPaal
 
     public void saldoCheck(ovPasSysteemPas ovPas)
     {
-	if (ovPas.saldo <= 10.00)
+	if (ovPas.getSaldo() < 10.00)
 	{
 	    System.out.print("Uw saldo is te laag zet meer saldo op je ov-pas om weer te kunnen reizen.");
 	    // methode om te starten van oplaad automaat
+	    quitProgram();
+	} else
+	{
+	    processKlaar = true;
 	}
 
     }
 
-    public void procces()
-    {
-	processKlaar = true;
-    }
-
     public void openPoort()
     {
-	if (poort = true)
+	if (poort == true)
 	{
 	    System.out.print("de poort is open");
 	}
