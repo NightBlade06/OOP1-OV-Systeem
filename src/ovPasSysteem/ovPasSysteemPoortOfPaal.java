@@ -4,11 +4,11 @@ public class ovPasSysteemPoortOfPaal
 {
     // Fields
 
-   private String locatie;
-   private boolean processKlaar = false;
-   private boolean poort;
-   private int huidigJaar;
-   private double reisTarief;
+    private String locatie;
+    private boolean processKlaar = false;
+    private boolean poort;
+    private int huidigJaar;
+    private double reisTarief;
 
     // Constructor
 
@@ -27,7 +27,7 @@ public class ovPasSysteemPoortOfPaal
 
 	ovPas.setRekeningWaarde(ovPas.getRekeningWaarde() + 1);
     }
-    
+
     public void validiteitCheck(ovPasSysteemPas ovPas)
     {
 	if (huidigJaar > ovPas.getGeldigTotDatum())
@@ -53,7 +53,7 @@ public class ovPasSysteemPoortOfPaal
     }
 
     // Methods incheck (methodes die alleen bij inchecken gelden)
-    
+
     public void saldoCheck(ovPasSysteemPas ovPas)
     {
 	if (ovPas.getSaldo() < 10.00)
@@ -67,58 +67,53 @@ public class ovPasSysteemPoortOfPaal
 	}
 
     }
-    
+
     public void inChecken(ovPasSysteemPas ovPas)
     {
-	if (processKlaar == true && poort == true && ovPas.getStatusIncheck() == false)
+	if (processKlaar == true && ovPas.getStatusIncheck() == false)
 	{
 	    locatieOverschrijven(ovPas);
 	    ovPas.setStatusIncheck(true);
 	    System.out.println("U bent ingecheckt op " + locatie);
-	    openPoort();
+	    if (poort == true)
+	    {
+		openPoort();
+	    }
 	}
 
-	else if (processKlaar == true && ovPas.getStatusIncheck() == false)
-	{
-	    locatieOverschrijven(ovPas);
-	    ovPas.setStatusIncheck(true);
-	    System.out.println("U bent ingecheckt op " + locatie);
-	    
-	} else
+	else
 	{
 	    System.out.println("Er is iets mis gegaan met inchecken.");
 	}
     }
-    
+
     // Methods uitcheck (methodes die alleen bij uitchecken gelden)
-    
+
     public void uitChecken(ovPasSysteemPas ovPas)
     {
-	if (processKlaar == true && poort == true && ovPas.getStatusIncheck() == true)
+	if (processKlaar == true && ovPas.getStatusIncheck() == true)
 	{
 	    locatieOverschrijven(ovPas);
 	    ovPas.setStatusIncheck(false);
 	    System.out.println("dit is uw huidige saldo: €" + ovPas.getSaldo());
 	    System.out.println("U bent uitgecheckt op " + locatie);
-	    openPoort();
+	    if (poort == true)
+	    {
+		openPoort();
+	    }
 	}
 
-	else if (processKlaar == true && ovPas.getStatusIncheck() == true)
-	{
-	    locatieOverschrijven(ovPas);
-	    ovPas.setStatusIncheck(false);
-	    System.out.println("dit is uw huidige saldo: €" + ovPas.getSaldo());
-	    System.out.println("U bent uitgecheckt op " + locatie);
-	    
-	} else
+	else
 	{
 	    System.out.println("Er is iets mis gegaan met uitchecken.");
 	}
     }
-    
-    public void berekenBetaling(ovPasSysteemPas ovPas) {
+
+    public void berekenBetaling(ovPasSysteemPas ovPas)
+    {
 	reisTarief = 2.00 + (ovPas.getRekeningWaarde() * 0.75);
 	ovPas.setSaldo(ovPas.getSaldo() - reisTarief);
+	processKlaar = true;
     }
 
 }
