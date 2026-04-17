@@ -89,7 +89,6 @@ public class ovPasSysteemPoortOfPaal
     {
 	if (processKlaar == true && ovPas.getStatusIncheck() == true)
 	{
-	    locatieOverschrijven(ovPas);
 	    ovPas.setStatusIncheck(false);
 	    System.out.println("dit is uw huidige saldo: €" + ovPas.getSaldo());
 	    System.out.println("U bent uitgecheckt op " + locatie);
@@ -107,7 +106,8 @@ public class ovPasSysteemPoortOfPaal
 
     public void berekenBetaling(ovPasSysteemPas ovPas)
     {
-	reisTarief = 2.00 + (ovPas.getRekeningWaarde() * 0.75);
+	locatieOverschrijven(ovPas);
+	reisTarief = 1.00 + (ovPas.getRekeningWaarde() * 0.75);
 	ovPas.setSaldo(ovPas.getSaldo() - reisTarief);
 	processKlaar = true;
     }

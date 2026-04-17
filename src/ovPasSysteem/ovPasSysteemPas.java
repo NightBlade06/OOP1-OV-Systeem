@@ -4,7 +4,6 @@ public class ovPasSysteemPas
 {
    // Fields
     
-   private int pasNr;
    private int geldigTotDatum;
    private double saldo;
    private double rekeningWaarde;
@@ -13,19 +12,14 @@ public class ovPasSysteemPas
    
    // Constructor
 
-   public ovPasSysteemPas(int pasNr, int datum, double saldo, boolean statusIncheck)
+   public ovPasSysteemPas(int datum, double saldo, boolean statusIncheck)
    {
-       this.pasNr = pasNr;
        this.geldigTotDatum = datum;
        this.saldo = saldo;
        this.statusIncheck = statusIncheck;
    }
     
  // Methods (Set / Get)
-    
-    public int getPasNr() {
-	return this.pasNr;
-    }
     
     public int getGeldigTotDatum() {
 	return this.geldigTotDatum;
