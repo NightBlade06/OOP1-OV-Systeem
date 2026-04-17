@@ -18,6 +18,16 @@ public class ovPasSysteemPoortOfPaal
 	this.poort = poort;
 	this.huidigJaar = huidigJaar;
     }
+    
+    // set / get
+    
+    public boolean getProccesKlaar() {
+	return this.processKlaar;
+    }
+    
+    public void setProccesKlaar(boolean proccesKlaar) {
+	this.processKlaar = proccesKlaar;
+    }
 
     // Methods algemeen (voor incheck en uitcheck)
 
@@ -26,16 +36,6 @@ public class ovPasSysteemPoortOfPaal
 	ovPas.setHuidigelocatie(this.locatie);
 
 	ovPas.setRekeningWaarde(ovPas.getRekeningWaarde() + 1);
-    }
-
-    public void validiteitCheck(ovPasSysteemPas ovPas)
-    {
-	if (huidigJaar > ovPas.getGeldigTotDatum())
-	{
-	    System.out.println("Uw ov-pas is verlopen haal z.s.m een nieuwe om weer te kunnen reizen.");
-	    quitProgram();
-	}
-
     }
 
     public void openPoort()
@@ -54,16 +54,12 @@ public class ovPasSysteemPoortOfPaal
 
     // Methods incheck (methodes die alleen bij inchecken gelden)
 
-    public void saldoCheck(ovPasSysteemPas ovPas)
+    public void validiteitCheck(ovPasSysteemPas ovPas)
     {
-	if (ovPas.getSaldo() < 10.00)
+	if (huidigJaar > ovPas.getGeldigTotDatum())
 	{
-	    System.out.println("Uw saldo is te laag zet meer saldo op je ov-pas om weer te kunnen reizen.");
-	    // methode om te starten van oplaad automaat
-	    quitProgram(); // deze moet weg later
-	} else
-	{
-	    processKlaar = true;
+	    System.out.println("Uw ov-pas is verlopen haal z.s.m een nieuwe om weer te kunnen reizen.");
+	    quitProgram();
 	}
 
     }
@@ -116,4 +112,19 @@ public class ovPasSysteemPoortOfPaal
 	processKlaar = true;
     }
 
+//oude stukken doe niet meer gebruikt wordden
+    
+//public void saldoCheck(ovPasSysteemPas ovPas, ovPasSysteemOplaadAutomaat OplaadAutomaat)
+//	{
+//	if (ovPas.getSaldo() < 10.00)
+//	{
+//	    System.out.println("Uw saldo is te laag zet meer saldo op je ov-pas om weer te kunnen reizen.");
+//	    OplaadAutomaat.bankAftrekken();
+//	    quitProgram(); // deze moet weg later
+//	} else
+//	{
+//	    processKlaar = true;
+//	}
+//
+//	}
 }

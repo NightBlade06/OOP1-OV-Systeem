@@ -13,12 +13,13 @@ public class ovPasSysteemPas
    
    // Constructor
 
-    public ovPasSysteemPas(int datum, double saldo, boolean statusIncheck)
-    {
-	this.geldigTotDatum = datum;
-	this.saldo = saldo;
-	this.statusIncheck = statusIncheck;
-    }
+   public ovPasSysteemPas(int pasNr, int datum, double saldo, boolean statusIncheck)
+   {
+       this.pasNr = pasNr;
+       this.geldigTotDatum = datum;
+       this.saldo = saldo;
+       this.statusIncheck = statusIncheck;
+   }
     
  // Methods (Set / Get)
     
